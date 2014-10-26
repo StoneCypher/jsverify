@@ -15,41 +15,34 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>jsverify</h1>
+        <img src="https://raw.githubusercontent.com/phadej/jsverify/master/jsverify-300.png" style="margin-right: 10px" align="left" height="100">
+        <h1>JSVerify</h1>
         <p>Property-based testing for JavaScript.</p>
 
-        <p class="view"><a href="https://github.com/phadej/jsverify">View the Project on GitHub <small>phadej/jsverify</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/phadej/jsverify/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/phadej/jsverify/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/phadej/jsverify">View On <strong>GitHub</strong></a></li>
-        </ul>
+        <p class="view">
+          <a href="https://github.com/phadej/jsverify">GitHub</a> &ndash;
+          <a href="https://www.npmjs.org/package/jsverify">npm registry</a></p>
       </header>
       <section>
-        <h1>
-<a name="jsverify" class="anchor" href="#jsverify"><span class="octicon octicon-link"></span></a>JSVerify</h1>
 
-<p><img src="https://raw.githubusercontent.com/phadej/jsverify/master/jsverify-300.png" align="right" height="100"></p>
+<h2>Property based testing</h2>
 
 <blockquote>
-<p>Property based checking.</p>
+<p>Property-based tests make statements about the output of your code based on the input, and these statements are verified for many different possible inputs. <a href="http://blog.jessitron.com/2013/04/property-based-testing-what-is-it.html">[1]</a></p>
 </blockquote>
 
-<p><a href="http://travis-ci.org/phadej/jsverify"><img src="https://secure.travis-ci.org/phadej/jsverify.svg?branch=master" alt="Build Status"></a>
-<a href="http://badge.fury.io/js/jsverify"><img src="https://badge.fury.io/js/jsverify.svg" alt="NPM version"></a>
-<a href="https://david-dm.org/phadej/jsverify"><img src="https://david-dm.org/phadej/jsverify.svg" alt="Dependency Status"></a>
-<a href="https://david-dm.org/phadej/jsverify#info=devDependencies"><img src="https://david-dm.org/phadej/jsverify/dev-status.svg" alt="devDependency Status"></a>
-<a href="https://codeclimate.com/github/phadej/jsverify"><img src="https://img.shields.io/codeclimate/github/phadej/jsverify.svg" alt="Code Climate"></a></p>
+<blockquote>
+<p>
+Property-based testing encourages a high level approach to testing in the form of abstract invariants functions should satisfy universally, with the actual test data generated for the programmer by the testing library. In this way code can be hammered with thousands of tests that would be infeasible to write by hand, often uncovering subtle corner cases that wouldn't be found otherwise. <a href="http://book.realworldhaskell.org/read/testing-and-quality-assurance.html">[2]</a></p>
+</blockquote>
 
 <h2>
-<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting Started</h2>
+<a name="getting-started" class="anchor" href="#getting-started"></a>Getting Started</h2>
 
 <p>Install the module with: <code>npm install jsverify</code></p>
 
 <h2>
-<a name="synopsis" class="anchor" href="#synopsis"><span class="octicon octicon-link"></span></a>Synopsis</h2>
+<a name="simple-example" class="anchor" href="#synopsis"></a>Simple example</h2>
 
 <div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">jsc</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"jsverify"</span><span class="p">);</span>
 

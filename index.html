@@ -5,62 +5,256 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>jsverify by phadej</title>
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+
+        font-family: 'Gill Sans', 'Futura', sans-serif;
+      }
+
+      header {
+        background: #000;
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+		min-width: 320px;
+      } 
+
+      header .box {
+        display: block;
+
+        width: 90vmin;
+        height: 90vmin;
+
+        position: relative;
+        top: 50%;
+        left: 50%;
+		-ms-transform: translate(-50%, -50%);
+		-webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+
+        background: #f0db4f;
+        background-size: 100% 100%;
+        background-image: url(https://raw.githubusercontent.com/phadej/jsverify/master/jsverify-300.png);
+
+        text-align: center;
+
+        padding: 15vmin 0;
+
+        color: #333;
+      }
+
+      header a {
+        color: #333;
+        text-decoration: none;
+      }
+
+      a {
+        color: #063;
+      }
+
+      section {
+        padding: 1em 3em;
+      }
+
+      h2, h3, blockquote, ul {
+        margin-bottom: 0.5em;
+      }
+
+      blockquote {
+        font-style: italic;
+      }
+
+      h2 {
+        font-weight: 300;
+        font-size: 1.8rem;
+      }
+
+      h3 {
+        font-weight: 300;
+        font-size: 1.5rem;
+      }
+
+      h2 a, h3 a {
+        color: #000;
+        text-decoration: none;
+      }
+
+      p, pre {
+        margin-bottom: 1em;
+      }
+
+      code {
+        background: #eee;
+        padding: 0 0.3em;
+        border-radius: 0.2em;
+        font-family: "Inconsalata-LCG", "Inconsalata", monospace;
+        font-size: 0.9rem;
+      }
+
+      code span {
+        font-family: "Inconsalata-LCG", "Inconsalata", monospace;
+      }
+
+      code span.comment {
+        color: #369;
+        font-style: italic;
+      }
+
+      code span.literal {
+        color: #396;
+      }
+
+      code span.variable {
+        color: #555;
+		font-style: italic;
+      }
+
+      pre {
+        padding: 0.2em 1em;
+        background: #eee;
+        border: 1px solid #ddd;
+        border-radius: 0.3em;
+
+      }
+
+      footer {
+        font-size: 0.8rem;
+        font-weight: 300;
+        color: #ccc;
+        background: #333;
+        padding: 1em 3em;
+      }
+
+      footer a {
+        color: #999;
+      }
+    </style>
+	<script src="Promise.js"></script>
+	<script src="underscore.js"></script>
+	<script src="jsverify.standalone.js"></script>
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <img src="https://raw.githubusercontent.com/phadej/jsverify/master/jsverify-300.png" style="margin-right: 10px" align="left" height="100">
-        <h1>JSVerify</h1>
-        <p>Property-based testing for JavaScript.</p>
+    <header>
+        <a href="#property-based-testing" class="box">
+          <h1>JSVerify</h1>
+          <p>Property-based testing for JavaScript.</p>
+      </a>
+    </header>
+    <section>
 
-        <p class="view">
-          <a href="https://github.com/phadej/jsverify">GitHub</a> &ndash;
-          <a href="https://www.npmjs.org/package/jsverify">npm registry</a></p>
-      </header>
-      <section>
+    <h2>
+      <a name="property-based-testing" class="anchor" href="#property-based-testing">
+      Property based testing</a></h2>
 
-<h2>Property based testing</h2>
+    <blockquote>
+      <p>
+      Property-based tests make statements about the output of your code based on the input, and these statements are verified for many different possible inputs. <a href="http://blog.jessitron.com/2013/04/property-based-testing-what-is-it.html">[1]</a></p>
+    </blockquote>
 
-<blockquote>
-<p>Property-based tests make statements about the output of your code based on the input, and these statements are verified for many different possible inputs. <a href="http://blog.jessitron.com/2013/04/property-based-testing-what-is-it.html">[1]</a></p>
-</blockquote>
+    <blockquote>
+      <p>
+      Property-based testing encourages a high level approach to testing in the form of abstract invariants functions should satisfy universally, with the actual test data generated for the programmer by the testing library. In this way code can be hammered with thousands of tests that would be infeasible to write by hand, often uncovering subtle corner cases that wouldn't be found otherwise. <a href="http://book.realworldhaskell.org/read/testing-and-quality-assurance.html">[2]</a></p>
+    </blockquote>
 
-<blockquote>
-<p>
-Property-based testing encourages a high level approach to testing in the form of abstract invariants functions should satisfy universally, with the actual test data generated for the programmer by the testing library. In this way code can be hammered with thousands of tests that would be infeasible to write by hand, often uncovering subtle corner cases that wouldn't be found otherwise. <a href="http://book.realworldhaskell.org/read/testing-and-quality-assurance.html">[2]</a></p>
-</blockquote>
+    <h2>
+      <a name="getting-started" class="anchor" href="#getting-started">Getting Started</a></h2>
 
-<h2>
-<a name="getting-started" class="anchor" href="#getting-started"></a>Getting Started</h2>
+    <p>Install the module from <a href="https://www.npmjs.org/package/jsverify">npm registry</a> with: <code>npm install jsverify</code></p>
+    <p>Clone the source from <a href="https://github.com/phadej/jsverify">GitHub</a>: <code>git clone https://github.com/phadej/jsverify.git</code>
 
-<p>Install the module with: <code>npm install jsverify</code></p>
+    <h2><a name="examples" class="anchor" href="#examples">Examples</a></h2>
 
-<h2>
-<a name="simple-example" class="anchor" href="#synopsis"></a>Simple example</h2>
+    <h3><a name="bool-thrice" class="anchor" href="bool-thrice">Boolean to Boolean function applied thrice</a></h3>
 
-<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">jsc</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"jsverify"</span><span class="p">);</span>
+	<p>This example is taken from older revision of <a href="http://www.cis.upenn.edu/~bcpierce/sf/current/index.html">Software Foundations book</a>.
+	We could prove the proposition by hand, as there are only four distinct <em>bool &rarr; bool</em> functions. Or we can make <em>JSVerify</em> generate inputs for us.
+	<p>
 
-<span class="c1">// forall (f : bool -&gt; bool) (b : bool), f (f (f b)) = f(b).</span>
-<span class="kd">var</span> <span class="nx">boolFnAppliedThrice</span> <span class="o">=</span>
-  <span class="nx">jsc</span><span class="p">.</span><span class="nx">forall</span><span class="p">(</span><span class="s2">"bool -&gt; bool"</span><span class="p">,</span> <span class="s2">"bool"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">f</span><span class="p">(</span><span class="nx">f</span><span class="p">(</span><span class="nx">f</span><span class="p">(</span><span class="nx">b</span><span class="p">)))</span> <span class="o">===</span> <span class="nx">f</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
-  <span class="p">});</span>
+	<pre><code class="javascript"><span class="comment">// forall (f: json -&gt; bool, b: bool), f (f (f b)) &equiv; f(b).</span>
+var boolFnAppliedThrice =
+  jsc.forall(<span class="literal">"bool -&gt; bool"</span>, <span class="literal">"bool"</span>, function (<span class="variable">f</span>, <span class="variable">b</span>) {
+    return <span class="variable">f</span>(<span class="variable">f</span>(<span class="variable">f</span><span class="variable">(b)</span>)) === <span class="variable">f</span><span class="variable">(b)</span>;
+  });
 
-<span class="nx">jsc</span><span class="p">.</span><span class="nx">assert</span><span class="p">(</span><span class="nx">boolFnAppliedThrice</span><span class="p">);</span>
-<span class="c1">// OK, passed 100 tests</span>
-</pre></div>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/phadej">phadej</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
+jsc.assert(boolFnAppliedThrice);
+<span class="comment">// OK, passed 100 tests</span></code></pre>
+
+    <h3><a name="sort-idempotent" class="anchor" href="sort-idempotent">Sort is idempontent</a></h3>
+
+	<p>A unary operation (or function) is idempotent if, whenever it is applied twice to any value, it gives the same result as if it were applied once; i.e., <em>ƒ(ƒ(x)) ≡ ƒ(x)</em>. For example, sort: <em>sort(sort(x)) ≡ sort(x)</em>.</p>
+
+    <pre><code class="javascript"><span class="comment">// forall (f : string -&gt; nat, arr: array string), sortBy(sortBy(arr, f), f) &equiv; sortBy(arr, f).</span>
+var sortIdempotent =
+  jsc.forall(<span class="literal">"string -&gt; nat"</span>, <span class="literal">"array string"</span>, function (<span class="variable">f</span>, <span class="variable">arr</span>) {
+    return _.isEqual(_.sortBy(_.sortBy(<span class="variable">arr</span>, <span class="variable">f</span>), <span class="variable">f</span>), _.sortBy(<span class="variable">arr</span>, <span class="variable">f</span>));
+  });
+
+jsc.assert(sortIdempotent);
+<span class="comment">// OK, passed 100 tests</span></code></pre>
+
+	<h3><a name="promise-example" class="anchor" href="promise-example">Promises</a></h3>
+
+	<p>We could test asynchronous methods with <em>JSVerify</em> too. Just return a <em>Promise</em> from a property function.</p>
+
+	<pre><code class="javascript">function delay(<span class="variable">timeout</span>, <span class="variable">f</span>) {
+  var <span class="variable">complete</span>;
+  var <span class="variable">p</span> = new Promise(function (<span class="variable">c</span>, <span class="variable">r</span>) {
+    <span class="variable">complete</span> = <span class="variable">c</span>;
+  });
+
+  setTimeout(function () {
+    <span class="variable">complete</span>(<span class="variable">f</span>());
+  }, <span class="variable">timeout</span>);
+
+  return <span class="variable">p</span>;
+}
+
+var noEffectOnPureComputations = jsc.forall(<span class="literal">"json -&gt; json"</span>, <span class="literal">"json"</span>, jsc.nat(<span class="literal">100</span>), function (<span class="variable">f</span>, <span class="variable">x</span>, <span class="variable">t</span>) {
+  var <span class="variable">sync</span> = <span class="variable">f</span>(<span class="variable">x</span>);
+  return delay(<span class="variable">t</span>, function () {
+    return <span class="variable">f</span>(<span class="variable">x</span>);
+  })
+  .then(function (<span class="variable">async</span>) {
+    return _.isEqual(<span class="variable">sync</span>, <span class="variable">async</span>);
+  });
+});
+
+jsc.check(noEffectOnPureComputations);
+<span class="comment">// OK, passed 100 tests</span></code></pre>
+
+	<h3><a name="minimal-counterexamle" class="anchor" href="promise-example">Minimal counterexamples</a></h3>
+
+	<p>In case property doesn't hold, <em>JSVerify</em> tries to find the smallest possible counterexample.</p>
+
+	<pre><code>var wrongTakeProp = jsc.forall(<span class="literal">"array nat"</span>, <span class="literal">"nat"</span>, function (<span class="variable">arr</span>, <span class="variable">n</span>) {
+  return _.take(<span class="variable">arr</span>, <span class="variable">n</span>).length === <span class="variable">n</span>;
+});
+
+jsc.check(wrongTakeProp);
+<span class="comment">//Failed after 2 tests and 6 shrinks. rngState: ...; Counterexample: []; 1;  [ [], 1 ]</span></code></pre>
+
+	<p>Here the problem was in the property specification:</p>
+
+	<pre><code>var correctTakeProp = jsc.forall(<span class="literal">"array nat"</span>, <span class="literal">"nat"</span>, function (<span class="variable">arr</span>, <span class="variable">n</span>) {
+  return _.take(<span class="variable">arr</span>, <span class="variable">n</span>).length <= <span class="variable">n</span>; <span class="comment">// Less than or equal to!</span>
+});
+
+jsc.check(correctTakeProp);
+<span class="comment">// OK, passed 100 tests</span></code></pre>
+
+    </section>
+    <footer>
+      <p>This project is maintained by <a href="https://github.com/phadej">phadej</a></p>
+      <p><small>Hosted on GitHub Pages</small></p>
+    </footer>
+
     <script src="javascripts/scale.fix.js"></script>
               <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
@@ -74,4 +268,4 @@ Property-based testing encourages a high level approach to testing in the form o
           </script>
 
   </body>
-</html>
+<s/html>

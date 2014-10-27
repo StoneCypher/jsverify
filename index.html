@@ -178,10 +178,10 @@
 
     <h2><a name="examples" class="anchor" href="#examples">Examples</a></h2>
 
-    <h3><a name="bool-thrice" class="anchor" href="bool-thrice">Boolean to Boolean function applied thrice</a></h3>
+    <h3><a name="bool-thrice" class="anchor" href="#bool-thrice">Boolean to Boolean function applied thrice</a></h3>
 
 	<p>This example is taken from older revision of <a href="http://www.cis.upenn.edu/~bcpierce/sf/current/index.html">Software Foundations book</a>.
-	We could prove the proposition by hand, as there are only four distinct <em>bool &rarr; bool</em> functions. Or we can make <em>JSVerify</em> generate inputs for us.
+	We could prove the proposition by hand, as there are only four distinct <em>bool &rarr; bool</em> functions. Or we can let <em>JSVerify</em> generate inputs for us.
 	<p>
 
 	<pre><code class="javascript"><span class="comment">// forall (f: json -&gt; bool, b: bool), f (f (f b)) &equiv; f(b).</span>
@@ -193,11 +193,11 @@ var boolFnAppliedThrice =
 jsc.assert(boolFnAppliedThrice);
 <span class="comment">// OK, passed 100 tests</span></code></pre>
 
-    <h3><a name="sort-idempotent" class="anchor" href="sort-idempotent">Sort is idempontent</a></h3>
+    <h3><a name="sort-idempotent" class="anchor" href="#sort-idempotent">Sort is idempontent</a></h3>
 
 	<p>A unary operation (or function) is idempotent if, whenever it is applied twice to any value, it gives the same result as if it were applied once; i.e., <em>ƒ(ƒ(x)) ≡ ƒ(x)</em>. For example, sort: <em>sort(sort(x)) ≡ sort(x)</em>.</p>
 
-    <pre><code class="javascript"><span class="comment">// forall (f : string -&gt; nat, arr: array string), sortBy(sortBy(arr, f), f) &equiv; sortBy(arr, f).</span>
+    <pre><code class="javascript"><span class="comment">// forall (f: string -&gt; nat, arr: array string), sortBy(sortBy(arr, f), f) &equiv; sortBy(arr, f).</span>
 var sortIdempotent =
   jsc.forall(<span class="literal">"string -&gt; nat"</span>, <span class="literal">"array string"</span>, function (<span class="variable">f</span>, <span class="variable">arr</span>) {
     return _.isEqual(_.sortBy(_.sortBy(<span class="variable">arr</span>, <span class="variable">f</span>), <span class="variable">f</span>), _.sortBy(<span class="variable">arr</span>, <span class="variable">f</span>));
@@ -206,7 +206,7 @@ var sortIdempotent =
 jsc.assert(sortIdempotent);
 <span class="comment">// OK, passed 100 tests</span></code></pre>
 
-	<h3><a name="promise-example" class="anchor" href="promise-example">Promises</a></h3>
+	<h3><a name="promise-example" class="anchor" href="#promise-example">Promises</a></h3>
 
 	<p>We could test asynchronous methods with <em>JSVerify</em> too. Just return a <em>Promise</em> from a property function.</p>
 
@@ -236,7 +236,7 @@ var noEffectOnPureComputations = jsc.forall(<span class="literal">"json -&gt; js
 jsc.check(noEffectOnPureComputations);
 <span class="comment">// OK, passed 100 tests</span></code></pre>
 
-	<h3><a name="minimal-counterexamle" class="anchor" href="promise-example">Minimal counterexamples</a></h3>
+	<h3><a name="minimal-counterexamle" class="anchor" href="#minimal-counterexample">Minimal counterexamples</a></h3>
 
 	<p>In case property doesn't hold, <em>JSVerify</em> tries to find the smallest possible counterexample.</p>
 
@@ -255,6 +255,10 @@ jsc.check(wrongTakeProp);
 
 jsc.check(correctTakeProp);
 <span class="comment">// OK, passed 100 tests</span></code></pre>
+
+	<h2><a name="documentation" class="anchor" href="#documentation">Documentation</a></h2>
+
+	<p>Check <a href="https://github.com/phadej/jsverify#documentation">the README on GitHub</a> for API and usage documentation.</p>
 
     </section>
     <footer>
